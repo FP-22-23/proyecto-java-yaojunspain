@@ -1,11 +1,12 @@
 # Proyecto del Segundo Cuatrimestre Fundamentos de Programaci�n (Curso 2021/22)
 Autor/a: Cristina Rubio   uvus:junyao
-Proyecto de java
+Proyecto de java , El dataset es sobre el numero de positivo de covid ha tenido dependiendo de a�o en el marzo de 2022 . 
 ## Estructura de las carpetas del proyecto
 
 * **/src**: Directorio con el codigo fuente.
   * **fp.covid**: Paquete que contiene los tipos del proyecto.
   * **fp.covid.test**: Paquete que contiene las clases de test del proyecto.
+  * **fp.common**:Paquete que contiene los tipos auxiliares.
   * **fp.utiles**:  Paquete que contiene las clases de utilidad. 
 * **/data**: Contiene el dataset del proyecto.
     * **datasetcovid.csv**: Archivo csv que contiene datos de diferentes partidas de ajedrez.
@@ -39,8 +40,8 @@ Representa los datos de test de covid.
 - _Average_temperature_, de tipo _Double_, consultable y modificable. de tipo Double, indica la temperatura media que tiene las personas.
 - _Death_case_, de tipo _Boolean_, consultable y modificable. indica si hay persona fallecita
 - _Symptom_, de tipo _TipoSymptom_, consultable . indica el s�ntoma que tienes las personas.Puede tomar los valores Fever,Cough,Strengless.
-- Total_Positivo, de tipo Integer, consultable. Numeros totales de las persoans que tiene covid en todo los paises.
-
+- getYear_date(), de tipo _Integer_,consultable.indica el a�o que realiza el test.
+-String getTemperatura(), de tipo _String_,consultable.indica si las perosonas esta en peligro en totales.
 
 **Constructores**: 
 
@@ -49,25 +50,34 @@ Representa los datos de test de covid.
 
 **Restricciones**:
  
-- R1: La duración debe estar entre 1 y 60.
-- R2: El movimiento inicial debe ser uno de los movimientos siguientes: h3, h4, g3, g4, f3, f4, e3, e4, d3, d4, c3, c4, b3, b4, a3, a4, Nh3, Nf3, Nc3, Na3.
-- R3: El rating de las blancas debe ser mayor que cero.
-- R4: El rating de las negras debe ser mayor que cero.
-***Criterio de igualdad**: Dos partidas son iguales si todas sus propiedades básicas son iguales.
+- R1: Edad inicial tiene que ser mayor que 0
+- R2: Edad final tiene quer ser mayor que 0
+- R3: El numero de positivo tiene que ser mayor que 0
 
-**Criterio de ordenación**: Por fecha, duración y número de movimientos.
+
+***Criterio de igualdad**: Dos Covid son iguales si todas sus propiedades basicas son iguales.
+
+**Criterio de ordenaci�n**: por edad inicial, edad final y pais.
 
 **Otras operaciones**:
 
-- _String getMovimiento(Integer numMovimiento)_: Devuelve el movimiento dado por el número numMovimiento. Eleva ```IllegalArgumentException``` si ```numMovimiento``` no está en el intervalo [1, getNumMovimientos()]
+
 
 #### Tipos auxiliares
 
 - TipoSymptom, enumerado. Puede tomar los valores Fever,Cough,Strengless.
 
+**Tipo Contenedor - Covids**: 
+Clase contenedora de los objetos de tipo Covid.
+
+Propiedades:
+- covids, de tipo List<Covid>, consultable. Lista de los datos de Covid.
+
+Constructores:
+- C1: Constructor para crear un objeto de tipo Covids
+- C2: Constructor para eliminar un objeto de tipo Covids.
 
 
-
-
+Criterio de igualdad: Dos covids son iguales si lo son sus propiedades son iguales.
 
 

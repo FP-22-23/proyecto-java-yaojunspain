@@ -3,7 +3,10 @@ package fp.covid;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Covid {
+import fp.common.TipoSymptom;
+import fp.utiles.Checkers;
+
+public class Covid implements Comparable<Covid> {
 	//Propiedades
 		private Integer age_start;
 		private Integer age_end;
@@ -16,50 +19,52 @@ public class Covid {
 		
 		
 		
-		//Restricciones
+		//Restricciones otra forma para hacerlo pero mejor con checker!!!!
 		//R1-age_start tiene que ser un valor entre 0 y 150
-		private Boolean check_age_start(Integer age_start){
-			Boolean r = true;
-			if(age_start<0||age_start>150) {
-				r=false;
-			}
-			return r;
-		}
+		//private Boolean check_age_start(Integer age_start){
+		//	Boolean r = true;
+		//	if(age_start<0||age_start>150) {
+		//		r=false;
+		//	}
+		//	return r;
+	//	}
 		//R2-age_end tiene que ser un valor entre 0 y 150
-		private Boolean check_age_end(Integer age_end){
-			Boolean r = true;
-			if(age_end<0||age_end>150) {
-				r=false;
-			}
-			return r;
-		}
-		//R3-los tipo de symptom en dataset solamente hay 3
-		private Boolean check_date(LocalDate date) {
-			Boolean r = true;
-			if(date.getYear()!=2020) {
-				r=false;
-			}
-			return r;
-		}
+		//private Boolean check_age_end(Integer age_end){
+			//Boolean r = true;
+			//if(age_end<0||age_end>150) {
+		//		r=false;
+		//	}
+	//		return r;
+	//	}
+	//	//R3-los tipo de symptom en dataset solamente hay 3
+	//	private Boolean check_date(LocalDate date) {
+		//	Boolean r = true;
+			//if(date.getYear()!=2020) {
+			//	r=false;
+	//		}
+		//	return r;
+	//	}
 		//Contructores
 		//Contructor1
 		public Covid(Integer age_start,Integer age_end,Integer positive,String country,LocalDate date,Double average_temperature,Boolean death_case,TipoSymptom symptom) {
 			//R1
-			if (check_age_start(age_start) == false) {
-				throw new IllegalArgumentException("Error de Edad start");
-			}
-			
+			//if (check_age_start(age_start) == false) {
+			//	throw new IllegalArgumentException("Error de Edad start");
+		//	}
 			//R2 
 
-			if (check_age_end(age_end) == false) {
-				throw new IllegalArgumentException("Error de Edad end");
-			}
+			//if (check_age_end(age_end) == false) {
+				//throw new IllegalArgumentException("Error de Edad end");
+		//	}
 			
 			
 			//R3
-			if (check_date(date) == false) {
-				throw new IllegalArgumentException("El año que tenemos solamente hay 2020");
-			}
+			//if (check_date(date) == false) {
+				//throw new IllegalArgumentException("El año que tenemos solamente hay 2020");
+			//}
+			Checkers.check("Error de age_start",age_start>=0);
+			Checkers.check("Error de age_end",age_start>=0);
+			Checkers.check("Error de num de positivo",positive>=0);
 			
 			
 			this.age_start = age_start;
@@ -80,37 +85,26 @@ public class Covid {
 			this.country = country;
 		}
 		
-		//Propiedad Derivada
-		public Integer getTotal_positive() {
-			return this.positive;
-		}
 		
 		public Integer getAge_start() {
 			return age_start;
 		}
 		public void setAge_start(Integer age_start) {
-			//R1
-			if (check_age_start(age_start) == false) {
-				throw new IllegalArgumentException("Error de Edad start");
-			}
-			
+			Checkers.check("Error de age_start", age_start>=0);
 			this.age_start = age_start;
 		}
 		public Integer getAge_end() {
 			return age_end;
 		}
 		public void setAge_end(Integer age_end) {
-			//R2 
-			if (check_age_end(age_end) == false) {
-				throw new IllegalArgumentException("Error de Edad end");
-			}
-			
+			Checkers.check("Error de age_end", age_end>=0);
 			this.age_end = age_end;
 		}
 		public Integer getPositive() {
 			return positive;
 		}
 		public void setPositive(Integer positive) {
+			Checkers.check("Error de num de positivo", positive>=0);
 			this.positive = positive;
 		}
 		public String getCountry() {
@@ -123,10 +117,6 @@ public class Covid {
 			return date;
 		}
 		public void setDate(LocalDate date) {
-			//R3
-			if (check_date(date) == false) {
-				throw new IllegalArgumentException("El año que tenemos solamente hay 2020");
-			}
 			this.date = date;
 		}
 		public Double getAverage_temperature() {
@@ -147,6 +137,26 @@ public class Covid {
 		public void setSymptom(TipoSymptom symptom) {
 			this.symptom = symptom;
 		}
+		//Propiedad Derivada
+		public Integer getYear_date() {
+			return this.date.getYear();
+		}
+		public String getTemperatura() {
+			if(this.getAverage_temperature() >=39.5) {
+				String estado = "peligroso alto";
+				return estado;
+			}
+			else if(this.getAverage_temperature()<=39.5 && this.getAverage_temperature()>=38.5) {
+				String estado = "peligroso medio";
+				return estado;
+			}
+			else {
+				String estado = "peligroso bajo";
+				return estado;				
+			}
+		}
+		
+		
 		//ToString  una representación como cadena.
 		@Override
 		public String toString() {
