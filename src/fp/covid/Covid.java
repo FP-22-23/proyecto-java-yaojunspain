@@ -84,8 +84,8 @@ public class Covid implements Comparable<Covid> {
 			this.positive = positive;
 			this.country = country;
 		}
-		
-		
+
+		//Setters y Getters
 		public Integer getAge_start() {
 			return age_start;
 		}
@@ -202,5 +202,4 @@ public class Covid implements Comparable<Covid> {
 					&& Objects.equals(death_case, other.death_case) && Objects.equals(positive, other.positive)
 					&& symptom == other.symptom;
 		}
-		
 }

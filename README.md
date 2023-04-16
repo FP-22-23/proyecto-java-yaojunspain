@@ -41,6 +41,7 @@ Representa los datos de test de covid.
 - _Death_case_, de tipo _Boolean_, consultable y modificable. indica si hay persona fallecita
 - _Symptom_, de tipo _TipoSymptom_, consultable . indica el síntoma que tienes las personas.Puede tomar los valores Fever,Cough,Strengless.
 - getYear_date(), de tipo _Integer_,consultable.indica el año que realiza el test.
+
 -String getTemperatura(), de tipo _String_,consultable.indica si las perosonas esta en peligro en totales.
 
 **Constructores**: 
@@ -66,12 +67,19 @@ Representa los datos de test de covid.
 #### Tipos auxiliares
 
 - TipoSymptom, enumerado. Puede tomar los valores Fever,Cough,Strengless.
+- CovidDatos, para saber los años que hemos investigado sobre el covid.
 
+**Factoría - FactoriaCovids**: 
+- Clase de factoría para construir objetos de tipo Covids.
+
+- Covids leerCovids(fichero):Crea un objeto de tipo Covids a partir de la información recogida en el archivo csv, cuya ruta se da como parámetro.
 **Tipo Contenedor - Covids**: 
 Clase contenedora de los objetos de tipo Covid.
 
 Propiedades:
 - covids, de tipo List<Covid>, consultable. Lista de los datos de Covid.
+
+- numeros covids, de tipo Integer devuelve el size de contenedor.
 
 Constructores:
 - C1: Constructor para crear un objeto de tipo Covids
@@ -80,4 +88,14 @@ Constructores:
 
 Criterio de igualdad: Dos covids son iguales si lo son sus propiedades son iguales.
 
+Otras operaciones:
+- existeCountry(String country):De tipo booleano,comprueba si hay este pais en el contenedor.
+
+- calcularNumeroDeFiebre(TipoSymptom	symptom):Devuelve un contador para contar el numero de fiebre hay en el database.
+
+- List<Covid> obtenerCovidsPorPais(String country): Un filtro , devuelve el contenedor cual cumple el parametro pais.
+
+-  Map<String,List<Covid>> calcularConsolaPorPais():Devuelve un Map cuyo key es el pais y su valor es una lista que tiene este pais.
+
+-  Map<String,Integer> totalPositivosPorPais():Devuelve un Map cuyo key es pais y su valor es numero de positivo acumulado de este pais.
 
