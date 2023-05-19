@@ -120,7 +120,7 @@ public class Covids implements CovidInterf {
 		return res;
 	}
 	
-	//tipo 5 key: pais value : los positivos sumados.
+	//tipo 5 key: pais value : los positivos sumados por pais.
 	public Map<String,Integer> totalPositivosPorPais(){
 		Map<String,Integer> res = new HashMap<String,Integer>();
 		for(Covid c:covids) {
