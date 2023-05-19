@@ -69,11 +69,14 @@ Representa los datos de test de covid.
 - TipoSymptom, enumerado. Puede tomar los valores Fever,Cough,Strengless.
 - CovidDatos, para saber los años que hemos investigado sobre el covid.
 
-**Factoría - FactoriaCovids**: 
+#### Factoría - FactoriaCovids
+
 - Clase de factoría para construir objetos de tipo Covids.
 
 - Covids leerCovids(fichero):Crea un objeto de tipo Covids a partir de la información recogida en el archivo csv, cuya ruta se da como parámetro.
-**Tipo Contenedor - Covids**: 
+
+#### Tipo Contenedor - Covids
+
 Clase contenedora de los objetos de tipo Covid.
 
 Propiedades:
@@ -84,18 +87,43 @@ Propiedades:
 Constructores:
 - C1: Constructor para crear un objeto de tipo Covids
 - C2: Constructor para eliminar un objeto de tipo Covids.
-
+- C3: Constructor con un parámetro de tipo Stream<Covid>. Crea un objeto de tipo Covids con los covid incluidas en el Stream dado.
 
 Criterio de igualdad: Dos covids son iguales si lo son sus propiedades son iguales.
 
 Otras operaciones:
-- existeCountry(String country):De tipo booleano,comprueba si hay este pais en el contenedor.
+- boolean existeCountry(String country):De tipo booleano,comprueba si hay este pais en el contenedor.
 
-- calcularNumeroDeFiebre(TipoSymptom	symptom):Devuelve un contador para contar el numero de fiebre hay en el database.
+- Integer calcularNumeroDeFiebre(TipoSymptom	symptom):Devuelve un contador para contar el numero de fiebre hay en el database.
 
 - List<Covid> obtenerCovidsPorPais(String country): Un filtro , devuelve el contenedor cual cumple el parametro pais.
 
--  Map<String,List<Covid>> calcularConsolaPorPais():Devuelve un Map cuyo key es el pais y su valor es una lista que tiene este pais.
+-  Map<String,List<Covid>> calcularCovidPorPais():Devuelve un Map cuyo key es el pais y su valor es una lista de covid que tiene este pais.
 
 -  Map<String,Integer> totalPositivosPorPais():Devuelve un Map cuyo key es pais y su valor es numero de positivo acumulado de este pais.
 
+El de stream:
+- boolean existeCountry(String country): Igual que anterior pero con stream.
+
+- Integer calcularNumeroDeFiebre(TipoSymptom	symptom): Igual que anterior pero con stream.
+
+- List<Covid> obtenerCovidsPorPais(String country):	Igual que anterior pero con stream.
+
+- Covid calcularMaxTemperaturaPorPais(String country):Devuelve el pais que tiene el maxima temperatura.
+
+- Covid calcularMinTemperaturaPorPais(String country):Devuelve el pais que tiene el minima
+temperatura.
+
+- List<Covid> obtenerCovidsPorPaisOrdenado(String country):Devuelve la lista el covid filtrado por pais y ordenado .
+
+- Map<String,List<Covid>> calcularCovidPorPais(): Igual que anterior pero con stream.
+
+- Map<TipoSymptom,Integer> totalSintomaPorCovid(): Devulve un Map cuyo key es tipo de sintoma y su valor es el numero de sintoma que tiene.
+
+- Map<String,Covid> temMaxPorPais(String country): Devulve un Map cuyo key es el pais y su valor es el numero mayor de temperatura que tiene este pais.
+
+- SortedMap<String,List<Covid>> getNTempPorPaisOrdenado(Integer n,String country): Devulve un Map cuyo key es pais y la lista de  n covid firtrado por pais ordenado por temperatura
+
+- List<Covid> ordenadoPorPositivoPais(String country): Devulve la lista con covid ordenado ,pero filtrado por pais.
+
+-Entry<String,Long> mayorNumeroCovidPorPais():Devulve el pais que tiene mas covid , cuyo key es el pais y el valor es numero de covid.

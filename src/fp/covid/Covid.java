@@ -86,6 +86,7 @@ public class Covid implements Comparable<Covid> {
 		}
 
 		//Setters y Getters
+
 		public Integer getAge_start() {
 			return age_start;
 		}
